@@ -28,10 +28,12 @@ export default function FloatingMusicPlayer() {
   const currentTrack = tracks[trackIndex];
 
   useEffect(() => {
+    playCurrent();
+
     return () => {
       audioRef.current?.pause();
     };
-  }, []);
+  }, [currentTrack.src]);
 
   const playCurrent = () => {
     if (!audioRef.current) {
@@ -40,15 +42,28 @@ export default function FloatingMusicPlayer() {
 
     audioRef.current.src = currentTrack.src;
     audioRef.current.currentTime = 23;
-    audioRef.current.play()
-      .then(() => {
-        setIsPlaying(true);
-        setNotice('');
-      })
-      .catch(() => {
-        setIsPlaying(false);
-        setNotice('Add the song file to public to play it.');
-      });
+    audioRef.current.muted = true;
+    audioRef.current.preload = 'auto';
+
+    const startPlayback = () => {
+      audioRef.current.play()
+        .then(() => {
+          setIsPlaying(true);
+          setNotice('');
+          audioRef.current.muted = false;
+        })
+        .catch(() => {
+          setIsPlaying(false);
+          setNotice('The song is loading. Tap play if autoplay is blocked.');
+        });
+    };
+
+    startPlayback();
+    window.setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.muted = false;
+      }
+    }, 180);
   };
 
   const togglePlay = () => {

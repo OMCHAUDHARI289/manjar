@@ -81,10 +81,18 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist'), { index: 'index.html' }));
 
-app.get(/.*/, (_req, res) => {
+app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+
+  return res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(port, () => {
