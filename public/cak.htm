@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Cutting Celebration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+.cursive-text {
+  font-family: 'Dancing Script', cursive;
+}
+
+.birthday-heading {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #140516;
+  font-family: 'Dancing Script', cursive;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+#cake {
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.34));
+  display: block;
+  position: relative;
+  margin: -10em auto 0 auto;
+  z-index: 5;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+#cake path[fill="#fefae9"],
+#cake rect[fill="#fefae9"] {
+  fill: #ffe7c2;
+}
+
+#cake path[fill="#a88679"] {
+  fill: #b47a68;
+}
+
+#cake path[fill="#8b6a60"] {
+  fill: #7c4f48;
+}
+
+.scene-container {
+  align-items: center;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(251, 113, 133, 0.34), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgba(20, 184, 166, 0.22), transparent 28%),
+    radial-gradient(circle at 50% 78%, rgba(251, 191, 36, 0.18), transparent 34%),
+    linear-gradient(145deg, #140516 0%, #35122c 46%, #102a36 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.scene-container::before,
+.scene-container::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.scene-container::before {
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 42% 12%, rgba(255, 231, 194, 0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 34%, rgba(255, 255, 255, 0.5) 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 76%, rgba(251, 191, 36, 0.55) 0 1px, transparent 2px);
+  background-size: 120px 120px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+  height: 100%;
+  inset: 0 0 auto;
+  opacity: 0.55;
+}
+
+.scene-container::after {
+  background:
+    radial-gradient(circle, rgba(244, 114, 182, 0.24), rgba(244, 114, 182, 0) 67%),
+    radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.24), rgba(34, 211, 238, 0) 58%);
+  filter: blur(18px);
+  height: 34rem;
+  inset: auto -9rem -13rem -9rem;
+}
+
+.scene-container.celebrating #cake {
+  filter: drop-shadow(0 0 34px rgba(255, 231, 194, 0.82));
+  transform: translateX(-18px) rotate(-1deg);
+}
+
+.scene-container.cake-cut #cake {
+  transform: translateX(-24px) rotate(-1deg) scale(0.98);
+}
+
+/* ============================================== Candle
+*/
+
+.velas {
+  background: #fff4d8;
+  border-radius: 10px;
+  position: absolute;
+  top: calc(50% - 205px);
+  left: 50%;
+  margin-left: -2.4px;
+  margin-top: -8.33333333px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  backface-visibility: hidden;
+  animation: in 500ms 6s ease-out forwards;
+  cursor: pointer;
+  z-index: 18;
+  transition: opacity 0.5s ease, transform 0.7s ease;
+}
+
+.velas.blown .fuego {
+  animation: blowOut 0.45s ease forwards;
+}
+.velas:after,
+.velas:before {
+  background: rgba(255, 0, 0, 0.4);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.22222222px;
+}
+.velas:after {
+  top: 25%;
+  left: 0;
+}
+.velas:before {
+  top: 45%;
+  left: 0;
+}
+
+/* ============================================== Fire
+*/
+
+.fuego {
+  border-radius: 100%;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -2.6px;
+  width: 6.66666667px;
+  height: 18px;
+}
+.fuego:nth-child(1) {
+  animation: fuego 2s 6.5s infinite;
+}
+.fuego:nth-child(2) {
+  animation: fuego 1.5s 6.5s infinite;
+}
+.fuego:nth-child(3) {
+  animation: fuego 1s 6.5s infinite;
+}
+.fuego:nth-child(4) {
+  animation: fuego 0.5s 6.5s infinite;
+}
+.fuego:nth-child(5) {
+  animation: fuego 0.2s 6.5s infinite;
+}
+
+/* ============================================== Animation Fire
+*/
+
+@keyframes fuego {
+  0%, 100% {
+    background: rgba(254, 248, 97, 0.5);
+    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    background: rgba(255, 50, 0, 0.1);
+    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+    transform: translateY(-20px) scale(0);
+  }
+}
+
+@keyframes in {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes blowOut {
+  to {
+    opacity: 0;
+    transform: translateY(-18px) scale(0);
+  }
+}
+
+.instruction {
+  background: rgba(255, 247, 237, 0.86);
+  border: 1px solid rgba(255, 231, 194, 0.78);
+  border-radius: 999px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22), 0 0 30px rgba(251, 191, 36, 0.13);
+  color: #e11d48;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 700;
+  left: 50%;
+  letter-spacing: 0.2em;
+  line-height: 1.65;
+  min-width: min(86vw, 310px);
+  padding: 0.75rem 1rem;
+  position: absolute;
+  text-align: center;
+  text-shadow: none;
+  text-transform: uppercase;
+  top: 8%;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease;
+  z-index: 12;
+}
+
+.happy-birthday-text {
+  color: #ffe7c2;
+  font-family: 'Dancing Script', cursive;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.42), 2px 2px 4px rgba(0, 0, 0, 0.28);
+  top: 12%;
+  transform: translate(-50%, 24px) scale(0.92);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  z-index: 12;
+}
+
+.happy-birthday-text.visible {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.happy-birthday-text span {
+  display: block;
+}
+
+.happy-birthday-text .happy-text {
+  font-size: clamp(2.2rem, 7vw, 5rem);
+}
+
+.happy-birthday-text .birthday-text {
+  color: #fb7185;
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  font-weight: 700;
+}
+
+.knife {
+  height: 16px;
+  left: -180px;
+  opacity: 0;
+  position: absolute;
+  top: 54%;
+  transform: translateY(-50%) rotate(-10deg);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 180px;
+  z-index: 14;
+}
+
+.knife.cutting {
+  animation: knifeCut 1.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.knife-blade {
+  background: linear-gradient(90deg, #f8fafc, #9ca3af);
+  border-radius: 999px 8px 8px 999px;
+  height: 14px;
+  left: 48px;
+  position: absolute;
+  top: 1px;
+  width: 128px;
+}
+
+.knife-handle {
+  background: linear-gradient(90deg, #4b2e2a, #8b5e54);
+  border-radius: 10px;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  top: -2px;
+  width: 58px;
+}
+
+.cake-slice {
+  background:
+    linear-gradient(135deg, transparent 0 49%, rgba(255, 255, 255, 0.75) 50% 52%, transparent 53%),
+    linear-gradient(145deg, #b47a68 0 42%, #ffe7c2 43% 57%, #7c4f48 58% 100%);
+  border-radius: 10px 80% 14px 12px;
+  box-shadow: 0 18px 35px rgba(139, 106, 96, 0.32);
+  height: 88px;
+  left: calc(50% + 40px);
+  opacity: 0;
+  position: absolute;
+  top: 58%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  width: 110px;
+  z-index: 13;
+}
+
+.cake-slice.visible {
+  opacity: 1;
+  transform: translate(105px, -48px) rotate(24deg);
+}
+
+.cake-cut-mark {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(96, 48, 42, 0.65), rgba(255, 255, 255, 0));
+  border-radius: 999px;
+  height: 146px;
+  left: calc(50% + 16px);
+  opacity: 0;
+  position: absolute;
+  top: 48%;
+  transform: translate(-50%, -50%) rotate(18deg) scaleY(0);
+  transform-origin: top;
+  transition: opacity 0.35s ease, transform 0.6s ease;
+  width: 5px;
+  z-index: 12;
+}
+
+.cake-cut-mark.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(18deg) scaleY(1);
+}
+
+.cake-crumb {
+  background: #ffe7c2;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(139, 106, 96, 0.28);
+  height: 8px;
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  width: 8px;
+  z-index: 21;
+  will-change: transform, opacity;
+  animation: crumbDrift var(--duration, 900ms) ease-out forwards;
+}
+
+.party-bomb {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0 8%, #fb7185 9% 55%, #14b8a6 56%);
+  border-radius: 50%;
+  bottom: 12%;
+  box-shadow: 0 0 28px rgba(251, 113, 133, 0.38);
+  height: 56px;
+  opacity: 0;
+  position: absolute;
+  transform: scale(0.4);
+  transition: all 0.5s ease;
+  width: 56px;
+  z-index: 10;
+}
+
+.party-bomb-left { left: 12%; }
+.party-bomb-right { right: 12%; }
+
+.firework-container,
+.confetti-layer,
+.balloon-layer {
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 9;
+}
+
+.firework {
+  bottom: 8%;
+  height: 8px;
+  position: absolute;
+  width: 8px;
+}
+
+.firework::before {
+  background: #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 16px #f59e0b;
+  content: "";
+  height: 8px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 8px;
+}
+
+.firework-particle {
+  animation: explode 0.95s ease-out forwards;
+  border-radius: 50%;
+  height: 7px;
+  opacity: 1;
+  position: absolute;
+  width: 7px;
+}
+
+.confetti-piece {
+  height: 10px;
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  width: 10px;
+  z-index: 20;
+  will-change: transform, opacity;
+  animation: confettiBurst var(--duration, 1300ms) ease-out forwards;
+}
+
+.confetti-piece.streamer {
+  border-radius: 999px !important;
+  height: 16px;
+  width: 6px;
+}
+
+.celebration-balloon {
+  bottom: -90px;
+  height: 70px;
+  position: fixed;
+  width: 58px;
+  z-index: 7;
+}
+
+.celebration-balloon::after {
+  background: rgba(255, 255, 255, 0.65);
+  content: "";
+  height: 75px;
+  left: 50%;
+  position: absolute;
+  top: 56px;
+  width: 2px;
+}
+
+.celebration-balloon.pink { color: #fb7185; }
+.celebration-balloon.purple { color: #d946ef; }
+.celebration-balloon.cyan { color: #14b8a6; }
+.celebration-balloon.gold { color: #f59e0b; }
+
+.wish-popup {
+  background: rgba(255, 247, 237, 0.92);
+  border: 1px solid rgba(255, 231, 194, 0.8);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(251, 113, 133, 0.28);
+  color: #475569;
+  display: none;
+  left: 50%;
+  max-width: min(90vw, 440px);
+  padding: 2rem;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 30;
+}
+
+.wish-popup.visible {
+  animation: popupIn 0.45s ease forwards;
+  display: block;
+}
+
+.wish-popup h2 {
+  color: #be123c;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  font-style: normal;
+  margin: 0 0 0.75rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.wish-popup p {
+  line-height: 1.6;
+  margin: 0 0 1.3rem;
+}
+
+.wish-popup button {
+  background: #020617;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 16px 35px rgba(251, 113, 133, 0.22);
+  color: #ffffff;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 0.9rem 1.45rem;
+  text-transform: uppercase;
+}
+
+.cake-cut-action {
+  background: #020617;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  bottom: 8%;
+  box-shadow: 0 18px 45px rgba(251, 113, 133, 0.3);
+  color: #ffffff;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  left: 50%;
+  letter-spacing: 0.18em;
+  min-height: 3.5rem;
+  padding: 0.95rem 1.55rem;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  transition: opacity 0.35s ease, transform 0.35s ease, background 0.35s ease;
+  z-index: 16;
+}
+
+.cake-cut-action:hover,
+.cake-cut-action:focus-visible {
+  background: #111827;
+  outline: none;
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.scene-container.celebrating .cake-cut-action {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+@keyframes shootUp {
+  to { bottom: 72%; }
+}
+
+@keyframes explode {
+  to {
+    opacity: 0;
+    transform: var(--travel-distance) scale(0.15);
+  }
+}
+
+@keyframes floatUpBalloon {
+  to {
+    bottom: 112vh;
+    opacity: 0;
+    transform: translateX(var(--drift)) rotate(16deg);
+  }
+}
+
+@keyframes popupIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--tx), var(--ty), 0) rotate(var(--rot));
+  }
+}
+
+@keyframes crumbDrift {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--tx), var(--ty), 0) scale(0.55);
+  }
+}
+
+@keyframes knifeCut {
+  0% {
+    left: calc(50% - 155px);
+    transform: translateY(-50%) rotate(-10deg);
+  }
+  35% {
+    left: calc(50% - 10px);
+    transform: translateY(-70%) rotate(-43deg);
+  }
+  68% {
+    left: calc(50% + 20px);
+    transform: translateY(-24%) rotate(-50deg);
+  }
+  100% {
+    left: calc(50% + 68px);
+    transform: translateY(-45%) rotate(-18deg);
+  }
+}
+
+.text {
+  color: #ffe7c2;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-style: normal;
+  position: relative;
+  text-align: center;
+  z-index: 6;
+}
+
+.text h1 {
+  color: #ffe7c2;
+  font-size: 1.8em;
+  margin: 0;
+  text-shadow: 0 0 18px rgba(251, 191, 36, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.32);
+}
+
+.text p {
+  color: #fecdd3;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.82rem;
+  font-style: italic;
+  margin: 0.35rem 0 0;
+}
+
+.cake-stage-glow {
+  background: radial-gradient(ellipse, rgba(255, 231, 194, 0.22), transparent 65%);
+  border-radius: 50%;
+  height: 14rem;
+  left: 50%;
+  position: absolute;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  width: min(72vw, 34rem);
+  z-index: 1;
+}
+
+.corner-decoration {
+  color: #ffe7c2;
+  font-size: clamp(3rem, 8vw, 6rem);
+  opacity: 0.55;
+  pointer-events: none;
+  position: absolute;
+  text-shadow: 0 0 24px rgba(251, 191, 36, 0.42);
+  z-index: 2;
+}
+
+.corner-decoration.left {
+  left: 7%;
+  top: 18%;
+  transform: rotate(-16deg);
+}
+
+.corner-decoration.right {
+  bottom: 15%;
+  right: 8%;
+  transform: rotate(14deg);
+}
+
+.music-badge {
+  align-items: center;
+  background: rgba(255, 247, 237, 0.86);
+  border: 1px solid rgba(255, 231, 194, 0.78);
+  border-radius: 999px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+  color: #be123c;
+  display: flex;
+  gap: 0.6rem;
+  left: 50%;
+  padding: 0.7rem 1rem;
+  position: absolute;
+  top: 2.2%;
+  transform: translateX(-50%);
+  z-index: 16;
+}
+
+.music-badge button {
+  background: #020617;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+  font-size: 0.8rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.music-badge span {
+  font-size: 1.05rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+    </style>
+</head>
+<body>
+  <div class="scene-container" id="scene">
+    <audio id="birthdaySong" loop preload="auto">
+      <source src="/happy-birthday-334876.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-badge" id="musicBadge">
+      <button type="button" id="musicToggle" aria-label="Play or pause birthday song">▶</button>
+      <span id="musicStatus">Birthday song</span>
+    </div>
+    <div class="cake-stage-glow" aria-hidden="true"></div>
+    <div class="corner-decoration left" aria-hidden="true">✦</div>
+    <div class="corner-decoration right" aria-hidden="true">♥</div>
+    <div class="firework-container" id="fireworkContainer"></div>
+    <div class="confetti-layer" id="confettiLayer"></div>
+    <div class="balloon-layer" id="balloonLayer"></div>
+    <div class="instruction" id="instruction">Blow out the candle<br>or cut the cake</div>
+    <div class="happy-birthday-text" id="happyBirthdayText">
+      <span class="happy-text">Happy</span>
+      <span class="birthday-text">Birthday</span>
+    </div>
+    <div class="knife" id="knife">
+      <div class="knife-handle"></div>
+      <div class="knife-blade"></div>
+    </div>
+    <div class="cake-cut-mark" id="cakeCutMark"></div>
+    <div class="cake-slice" id="cakeSlice"></div>
+    <div class="party-bomb party-bomb-left" id="bombLeft"></div>
+    <div class="party-bomb party-bomb-right" id="bombRight"></div>
+    <div class="velas">
+    <div class="fuego"></div>
+    <div class="fuego"></div>
+    <div class="fuego"></div>
+    <div class="fuego"></div>
+    <div class="fuego"></div>
+</div>
+<svg id="cake" version="1.1" x="0px" y="0px" width="200px" height="500px" viewBox="0 0 200 500" enable-background="new 0 0 200 500" xml:space="preserve">
+    <path fill="#a88679" d="M173.667-13.94c-49.298,0-102.782,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c44.697,0,96.586,0,147.334,0C177.667-29.942,177.668-13.94,173.667-13.94z">
+        <animate id="bizcocho_3" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1" begin="relleno_2.end" dur="0.3s" fill="freeze" values="
+                          M173.667-13.94c-49.298,0-102.782,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c44.697,0,96.586,0,147.334,0C177.667-29.942,177.668-13.94,173.667-13.94z
+                          ;
+                          M173.667,411.567c-47.995,12.408-102.955,12.561-147.334,0
+		c-3.848-1.089-0.189-16.089,3.661-15.002c44.836,12.66,90.519,12.753,139.427,0.07
+		C173.293,395.631,177.541,410.566,173.667,411.567z
+                          ;
+                          M173.667,427.569c-49.795,0-101.101,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c46.385,0,97.539,0,147.334,0C177.668,411.567,177.667,427.569,173.667,427.569z
+                          " />
+    </path>
+    <path fill="#8b6a60" d="M100-178.521c1.858,0,3.364,1.506,3.364,3.363c0,0,0,33.17,0,44.227
+		c0,19.144,0,57.431,0,76.574c0,10.152,0,40.607,0,40.607c0,1.858-1.506,3.364-3.364,3.364l0,0c-1.858,0-3.364-1.506-3.364-3.364c0,0,0-30.455,0-40.607c0-19.144,0-57.432,0-76.575c0-11.057,0-44.226,0-44.226C96.636-177.015,98.142-178.521,100-178.521
+		L100-178.521z">
+        <animate id="relleno_2" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0 0 0.58 1" begin="bizcocho_2.end" dur="0.5s" fill="freeze" values="
+                          M100-178.521c1.858,0,3.364,1.506,3.364,3.363c0,0,0,33.17,0,44.227
+		c0,19.144,0,57.431,0,76.574c0,10.152,0,40.607,0,40.607c0,1.858-1.506,3.364-3.364,3.364l0,0c-1.858,0-3.364-1.506-3.364-3.364c0,0,0-30.455,0-40.607c0-19.144,0-57.432,0-76.575c0-11.057,0-44.226,0-44.226C96.636-177.015,98.142-178.521,100-178.521
+		L100-178.521z
+                          ;
+                          M100,267.257c1.858,0,3.364,1.506,3.364,3.363c0,0,0,33.17,0,44.227
+		c0,19.143,0,57.43,0,76.574c0,10.151,0,40.606,0,40.606c0,1.858-1.506,3.364-3.364,3.364l0,0c-1.858,0-3.364-1.506-3.364-3.364
+		c0,0,0-30.455,0-40.606c0-19.145,0-57.432,0-76.576c0-11.057,0-44.225,0-44.225C96.636,268.763,98.142,267.257,100,267.257
+		L100,267.257z
+                          ;
+                          M93.928,405.433c-0.655,6.444-0.102,9.067,2.957,11.798c0,0,8.083,5.571,16.828,3.503
+		c18.629-4.406,43.813,6.194,50.792,7.791c14.75,3.375,9.162,6.867,9.162,6.867c-2.412,2.258-58.328,0-73.667,0l0,0
+		c-1.858,0-69.995,2.133-73.667,0c0,0-3.337-2.439,6.172-5.992c11.375-4.25,52.875,8.822,47.139-9.442
+		c-6.333-20.167,5.226-21.514,5.226-21.514c3.435-0.915,12.78-6.663,10.923-0.546L93.928,405.433z
+                          ;
+                          M102.242,427.569c5.348,0,14.079,0,17.462,0c0,0,17.026,0,27.504,0
+		c19.143,0,20.39-3.797,26.459,0c3,1.877,0,7.823,0,7.823c-2.412,2.258-58.328,0-73.667,0l0,0c-1.858,0-67.187,0-73.667,0
+		c0,0-4.125-4.983,0-7.823c5.201-3.58,16.085,0,23.725,0c8.841,0,20.762,0,20.762,0c3.686,0,8.597,0,19.511,0H102.242z
+                          " />
+    </path>
+    <path fill="#a88679" d="M173.667-15.929c-46.512,0-105.486,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c43.566,0,97.96,0,147.334,0C177.667-31.931,177.666-15.929,173.667-15.929z">
+        <animate id="bizcocho_2" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0.25 0 0.58 1" begin="relleno_1.end" dur="0.5s" fill="freeze" values="
+                          M173.667-15.929c-46.512,0-105.486,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c43.566,0,97.96,0,147.334,0C177.667-31.931,177.666-15.929,173.667-15.929z
+                          ;
+                          M173.434,445.393c-47.269,8.001-105.245,8.001-147.334,0c-3.929-0.747-0.692-16.543,3.243-15.824
+		c43.828,8.001,92.165,8.001,140.739,0C174.029,428.918,177.377,444.726,173.434,445.393z
+                          ;
+                          M173.667,449.514c-47.576-5.454-102.799-5.744-147.333,0c-3.966,0.512-3.938-15.297,0-16.002
+		c43.683-7.823,97.646-8.026,147.333,0C177.616,434.15,177.642,449.969,173.667,449.514z
+                          ;
+                          M173.667,451.394c-49.298,0-102.782,0-147.334,0c-3.999,0-4-16.002,0-16.002
+		c44.697,0,96.586,0,147.334,0C177.667,435.392,177.668,451.394,173.667,451.394z
+                          " />
+    </path>
+    <path fill="#8b6a60" d="M101.368-73.685c0,12.164,0,15.18,0,28.519c0,22.702,0-13.661,0,8.304c0,14.48,0,18.233,0,30.512
+		c0,1.753-2.958,1.847-2.958,0c0-12.68,0-16.277,0-30.401c0-21.983,0,11.66,0-8.305c0-13.027,0-15.992,0-28.628
+		C98.411-75.883,101.368-75.592,101.368-73.685z">
+        <animate id="relleno_1" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0 0 0.6 1" begin="bizcocho_1.end" dur="0.5s" fill="freeze" values="
+                          M101.368-73.685c0,12.164,0,15.18,0,28.519c0,22.702,0-13.661,0,8.304c0,14.48,0,18.233,0,30.512
+		c0,1.753-2.958,1.847-2.958,0c0-12.68,0-16.277,0-30.401c0-21.983,0,11.66,0-8.305c0-13.027,0-15.992,0-28.628
+		C98.411-75.883,101.368-75.592,101.368-73.685z
+                          ;
+                          M101.368,350.885c0,12.164,0,65.18,0,78.518c0,22.703,0-33.66,0-11.695c0,14.48,0,28.232,0,40.512
+		c0,1.753-2.958,1.847-2.958,0c0-12.68,0-26.277,0-40.402c0-21.982,0,31.66,0,11.695c0-13.027,0-65.992,0-78.627
+		C98.411,348.686,101.368,348.977,101.368,350.885z
+                          ;
+                          M128.38,447.567c37.626,6.312,39.303,13.658,26.833,12.833c-22.653-1.499-13.636-0.831-23.302-0.831
+		c-14.48,0-17.884,0-30.163,0c-2.087,0-2.068,0-3.915,0c-13.333,0-8.963,0-23.088,0c-11.668,0-14.062,5.995-27.532,1.164
+		c-12.629-4.529,38.667-3.167,46.833-17.333C100.077,432.94,105.546,443.736,128.38,447.567z
+                          ;
+                          M173.667,451.394c2.875,0,2.997,9.257,0,9.131c-22.662-0.956-32.09-0.956-41.756-0.956
+		c-14.48,0-17.884,0-30.163,0c-2.087,0-2.068,0-3.915,0c-13.333,0-8.963,0-23.088,0c-11.668,0-34.99-0.294-48.412,1.831
+		c-4.109,0.65-3.01-10.006,0-10.006C37.129,451.394,149.379,451.394,173.667,451.394z
+                          " />
+    </path>
+    <path fill="#a88679" d="M173.667,21.571c-33.174,0-111.467,0-147.334,0c-4,0-4-16.002,0-16.002c39.836,0,105.982,0,147.334,0
+		C177.668,5.569,177.667,21.571,173.667,21.571z">
+        <animate id="bizcocho_1" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0 0 1 1; 0.25 0 1 1; 0 0 1 1; 0.25 0 0.6 1" begin="2s" dur="0.8s" fill="freeze" values="
+                          M173.667,21.571c-33.174,0-111.467,0-147.334,0c-4,0-4-16.002,0-16.002c39.836,0,105.982,0,147.334,0
+		C177.668,5.569,177.667,21.571,173.667,21.571z
+                          ;
+                          M173.667,459.569c-33.197,16.002-110.782,16.002-147.334,0c-3.664-1.604,1.614-15.617,5.337-14.153
+		c40.702,16.002,94.289,16.104,136.505,0.103C171.917,444.1,177.271,457.832,173.667,459.569z
+                          ;
+                          M171.817,475.571c-39.361-3.001-105.438-2.571-143.556,0c-3.991,0.27-7.377-14.736-3.387-15.014
+		c41.553-2.888,104.421-3.121,150.51-0.233C179.378,460.574,175.806,475.875,171.817,475.571z
+                          ;
+                          M171.817,459.564c-38.8-12.188-104.504-13.762-143.556,0c-3.772,1.329-7.961-12.604-4.178-13.905
+		c40.864-14.064,105.114-15.52,151.918-0.973C179.822,445.874,175.634,460.762,171.817,459.564z
+                          ;
+                          M173.667,475.571c-46.376-5.005-105.924-4.003-147.334,0c-3.981,0.385-3.479-15.421,0.479-16.002
+		c43.087-6.327,97.705-7.083,146.855,0.438C177.621,460.613,177.644,476,173.667,475.571z
+                          ;
+                          M173.667,474.117c-46.376,1.866-105.638,2.01-147.334,0c-3.995-0.192-3.52-16.144,0.479-16.002
+		c43.794,1.55,96.341,1.541,145.723,0C176.532,457.99,177.663,473.956,173.667,474.117z
+                          ;
+                          M173.667,475.571c-46.512,0-105.486,0-147.334,0c-3.999,0-4-16.002,0-16.002c43.566,0,97.96,0,147.334,0
+		C177.667,459.569,177.666,475.571,173.667,475.571z
+                          " />
+    </path>
+    <path fill="#fefae9" d="M104.812,113.216c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.375
+	c0-5.143,0-15.427,0-20.568c0-7.333,0-21.998,0-29.33c0-5.523,0-16.569,0-22.092c0-3.295,0-9.885,0-13.181
+	C95.188,2.551,97.353,0,100,0c2.648,0,4.812,2.551,4.812,5.669c0,3.248,0,9.743,0,12.991c0,5.428,0,16.284,0,21.711
+	c0,7.618,0,22.854,0,30.472c0,4.952,0,14.854,0,19.807C104.812,96.292,104.812,107.576,104.812,113.216z">
+        <animate id="crema" attributeName="d" calcMode="spline" keySplines="0 0 1 1; 0 0 1 1; 0 0 1 1; 0.25 0 1 1; 0 0 1 1; 0 0 0.58 1" begin="bizcocho_3.end" dur="2s" fill="freeze" values="
+                          M104.812,113.216c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.375
+	c0-5.143,0-15.427,0-20.568c0-7.333,0-21.998,0-29.33c0-5.523,0-16.569,0-22.092c0-3.295,0-9.885,0-13.181
+	C95.188,2.551,97.353,0,100,0c2.648,0,4.812,2.551,4.812,5.669c0,3.248,0,9.743,0,12.991c0,5.428,0,16.284,0,21.711
+	c0,7.618,0,22.854,0,30.472c0,4.952,0,14.854,0,19.807C104.812,96.292,104.812,107.576,104.812,113.216z
+                          ;
+                          M104.812,405.897c0,3.119-2.164,5.67-4.812,5.67c-2.646,0-4.812-2.551-4.812-5.67c0-5.594,0-16.782,0-22.376
+	c0-5.143,0-15.426,0-20.568c0-7.332,0-21.997,0-29.33c0-5.522,0-16.568,0-22.092c0-3.295,0-9.885,0-13.181
+	c0-3.118,2.165-5.669,4.812-5.669c2.648,0,4.812,2.551,4.812,5.669c0,3.247,0,9.743,0,12.991c0,5.428,0,16.283,0,21.711
+	c0,7.618,0,22.854,0,30.473c0,4.951,0,14.854,0,19.807C104.812,388.972,104.812,400.256,104.812,405.897z
+                          ;
+                          M111.873,411.567c-3.119,0-9.226,0-11.874,0c-2.646,0-7.748,0-10.867,0c-7.086,0-12.698,0-18.292,0
+	c-6.592,0-12.871,7.371-19.166,3.008c-10.043-6.961-7.776-10.169,2.991-17.745c12.61-8.873,27.713,1.994,25.919-7.531
+	c-2.589-13.742,11.008-14.513,11.365-17.789c0.441-4.051,4.235-11.107,8.051-8.175c3.113,2.393,1.007,8.008,0,13.159
+	c-1.871,9.569,8.058,2.113,9.494,14.155c2.592,21.732,21.184-0.675,29.309,7.976c5.216,5.553,18.413,5.552,15.426,12.942
+	c-3.131,7.745-15.825-4.369-23.8,2.903C126.261,418.271,118.301,411.567,111.873,411.567z
+                          ;
+                          M111.873,411.567c-3.119,0-9.226,0-11.874,0c-2.646,0-9.734,4.069-12.853,4.069
+	c-7.086,0-10.712-4.069-16.306-4.069c-6.592,0-12.12,6.013-19.166,3.008c-7.053-3.008-7.458,2.026-18.659,1.165
+	c-6.832-0.525-7.522-3.034-7.533-6.265c-0.037-10.336,22.073-2.452,36.613-2.628c10.234-0.124,19.856-1.439,37.905-2.102
+	c16.642-0.61,32.699,1.552,46.009,1.927c12.438,0.351,29.663-8.99,31.532,3.315c0.773,5.093-5.605,3.342-11.211,9.579
+	c-5.093,5.667-7.59-4.605-12.965-3.832c-8.269,1.189-14.962-8.537-22.937-1.265C126.261,418.271,118.301,411.567,111.873,411.567z
+                          ;
+                          M110.946,413.652c-2.904-1.137-8.405-2.748-12.446-0.97c-6.099,2.685-7.273,10.358-13.253,8.242
+	c-7.843-2.775-8.953-5.008-14.546-5.01c-24.653-0.011-4.849,26.507-18.264,26.507c-12.377,0,5.791-33.537-19.422-26.682
+	c-7.703,2.095-9.806-0.942-9.817-4.173c-0.037-10.336,24.357-4.544,38.897-4.72c10.234-0.124,19.856-1.439,37.905-2.102
+	c16.642-0.61,32.699,1.552,46.009,1.927c12.438,0.351,28.973-8.865,31.532,3.315c1.449,6.896,0.318,15.624-3.874,15.624
+	c-7.619,0-1.788-15.192-19.243-7.111c-7.581,3.51-15.963-9.738-26.669,1.066C120.644,426.744,118.381,416.561,110.946,413.652z
+                          ;
+                          M111.547,413.9c-2.969-0.956-8.775-0.949-13.167-0.5c-14.667,1.5-8.325,16.508-14.667,16.666
+	c-6.667,0.166-0.167-13.5-13.013-14.151c-30.471-1.545-5.572,46.651-18.987,46.651c-12.377,0,10.333-50.166-18.667-44.5
+	c-7.835,1.531-9.537-1.417-9.548-4.647c-0.037-10.336,23.675-5.177,38.215-5.353c10.234-0.124,20.618-1.671,38.667-2.333
+	c16.642-0.61,32.023,1.458,45.333,1.833c12.438,0.351,33.819-8.431,33.199,4.001c-0.532,10.666,0.414,26.166-5.245,25.833
+	c-7.606-0.447-2.954-31.5-19.243-18.899c-7.985,6.177-17.658-5.969-27.377,5.732C118.88,434.066,121.38,417.067,111.547,413.9z
+                          ;
+                          M111.547,415.233c-6.667-0.834-9.667,4.667-13.833,3.333c-19.649-6.291-8.158,22.176-14.5,22.334
+	c-6.667,0.166,2.833-18-13.333-22.167c-29.544-7.615-9.667,43.833-20.167,43.833c-10.333,0,8.004-55.006-16.833-39
+	c-7.5,4.833-9.508-3.78-9.299-7.004c0.799-12.329,23.592-7.153,38.132-7.329c10.234-0.124,20.238-1.505,38.287-2.167
+	c16.642-0.61,32.903,1.125,46.213,1.5c12.438,0.351,35.058-5.579,31.863,6.451c-5.532,20.833,1.25,28.216-4.409,27.883
+	c-7.606-0.447-6.058-37.895-20.62-23.333c-10.167,10.166-15.972-0.747-25,12C119.547,443.568,121.798,416.515,111.547,415.233z
+                          " />
+    </path>
+    <rect x="10" y="475.571" fill="#fefae9" width="180" height="4" />
+</svg>
+<div class="text">
+  <h1>happy birthday!</h1>
+  <p>@bhurtel</p>
+</div>
+    <button class="cake-cut-action" id="cutCakeButton" type="button">Cut The Cake</button>
+  </div>
+  <div class="wish-popup" id="wishPopup">
+    <h2>Make a wish</h2>
+    <p>Close your eyes, keep the sweetest thought in your heart, and let this moment be yours.</p>
+    <button type="button" id="wishDone">Write Wish</button>
+  </div>
+  <script>
+    const scene = document.getElementById('scene');
+    const candle = document.querySelector('.velas');
+    const flames = document.querySelectorAll('.fuego');
+    const instruction = document.getElementById('instruction');
+    const knife = document.getElementById('knife');
+    const cutCakeButton = document.getElementById('cutCakeButton');
+    const cakeCutMark = document.getElementById('cakeCutMark');
+    const cakeSlice = document.getElementById('cakeSlice');
+    const happyBirthdayText = document.getElementById('happyBirthdayText');
+    const fireworkContainer = document.getElementById('fireworkContainer');
+    const confettiLayer = document.getElementById('confettiLayer');
+    const balloonLayer = document.getElementById('balloonLayer');
+    const wishPopup = document.getElementById('wishPopup');
+    const wishDone = document.getElementById('wishDone');
+    const birthdaySong = document.getElementById('birthdaySong');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicStatus = document.getElementById('musicStatus');
+    let isAnimating = false;
+    let musicStarted = false;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+    const confettiLimit = isMobile ? 110 : 240;
+
+    birthdaySong.volume = 0.58;
+
+    function setMusicUi(playing) {
+      musicToggle.textContent = playing ? '❚❚' : '▶';
+      musicStatus.textContent = playing ? 'Birthday song playing' : 'Tap for birthday song';
+    }
+
+    function playBirthdaySong() {
+      if (musicStarted && !birthdaySong.paused) return;
+      birthdaySong.play()
+        .then(() => {
+          musicStarted = true;
+          setMusicUi(true);
+        })
+        .catch(() => {
+          setMusicUi(false);
+        });
+    }
+
+    function pauseBirthdaySong() {
+      birthdaySong.pause();
+      setMusicUi(false);
+    }
+
+    playBirthdaySong();
+    window.addEventListener('pointerdown', playBirthdaySong, { once: true });
+    window.addEventListener('keydown', playBirthdaySong, { once: true });
+    birthdaySong.addEventListener('play', () => setMusicUi(true));
+    birthdaySong.addEventListener('pause', () => setMusicUi(false));
+    birthdaySong.addEventListener('error', () => {
+      musicStatus.textContent = 'Song file not found';
+      musicToggle.textContent = '▶';
+    });
+    musicToggle.addEventListener('pointerdown', (event) => {
+      event.stopPropagation();
+    });
+    musicToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (birthdaySong.paused) {
+        playBirthdaySong();
+      } else {
+        pauseBirthdaySong();
+      }
+    });
+
+    function removeOldestPieces(layer, selector, limit) {
+      const pieces = layer.querySelectorAll(selector);
+      const overflow = pieces.length - limit;
+      if (overflow > 0) {
+        pieces.forEach((piece, index) => {
+          if (index < overflow) piece.remove();
+        });
+      }
+    }
+
+    function createConfetti(x, y, amount = 50) {
+      if (prefersReducedMotion) return;
+      const colors = ['#fb7185', '#f59e0b', '#a855f7', '#14b8a6', '#f43f5e', '#fbbf24', '#22d3ee'];
+      const count = Math.min(amount, isMobile ? 20 : 46);
+      removeOldestPieces(confettiLayer, '.confetti-piece', confettiLimit);
+      for (let i = 0; i < count; i++) {
+        const confetti = document.createElement('div');
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+        const distance = (isMobile ? 72 : 105) + Math.random() * (isMobile ? 76 : 130);
+        const fall = (isMobile ? 95 : 130) + Math.random() * (isMobile ? 90 : 150);
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance + fall;
+
+        confetti.className = 'confetti-piece';
+        if (Math.random() > 0.55) confetti.classList.add('streamer');
+        confetti.style.left = `${x}px`;
+        confetti.style.top = `${y}px`;
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        confetti.style.setProperty('--tx', `${tx}px`);
+        confetti.style.setProperty('--ty', `${ty}px`);
+        confetti.style.setProperty('--rot', `${Math.random() * 720 - 360}deg`);
+        confetti.style.setProperty('--duration', `${900 + Math.random() * (isMobile ? 650 : 950)}ms`);
+        confettiLayer.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2200);
+      }
+    }
+
+    function createCakeCrumbs(x, y) {
+      if (prefersReducedMotion) return;
+      const count = isMobile ? 8 : 18;
+      removeOldestPieces(confettiLayer, '.cake-crumb', isMobile ? 28 : 60);
+      for (let i = 0; i < count; i++) {
+        const crumb = document.createElement('div');
+        const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI;
+        const distance = 35 + Math.random() * (isMobile ? 45 : 85);
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance + 80 + Math.random() * 70;
+
+        crumb.className = 'cake-crumb';
+        crumb.style.left = `${x + (Math.random() - 0.5) * 34}px`;
+        crumb.style.top = `${y + (Math.random() - 0.5) * 30}px`;
+        crumb.style.background = Math.random() > 0.45 ? '#fefae9' : '#a88679';
+        crumb.style.setProperty('--tx', `${tx}px`);
+        crumb.style.setProperty('--ty', `${ty}px`);
+        crumb.style.setProperty('--duration', `${700 + Math.random() * 500}ms`);
+        confettiLayer.appendChild(crumb);
+        setTimeout(() => crumb.remove(), 1400);
+      }
+    }
+
+    function createConfettiCurtain() {
+      if (prefersReducedMotion) return;
+      const bursts = isMobile ? 3 : 6;
+      for (let i = 0; i < bursts; i++) {
+        setTimeout(() => {
+          createConfetti(Math.random() * window.innerWidth, -18, isMobile ? 14 : 30);
+        }, i * (isMobile ? 220 : 170));
+      }
+    }
+
+    function createFirework(side, offset = 0) {
+      if (prefersReducedMotion) return;
+      const firework = document.createElement('div');
+      const base = side === 'left' ? '25%' : '75%';
+      const colors = ['#fb7185', '#f59e0b', '#a855f7', '#14b8a6', '#f43f5e', '#fbbf24', '#22d3ee'];
+
+      firework.className = 'firework';
+      firework.style.left = `calc(${base} + ${offset + (Math.random() - 0.5) * 8}px)`;
+      firework.style.animation = 'shootUp 1.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+      fireworkContainer.appendChild(firework);
+
+      setTimeout(() => {
+        const particleCount = isMobile ? 18 : 38;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          const angle = (i / particleCount) * 360 + (Math.random() - 0.5) * 10;
+          const distance = Math.random() * (isMobile ? 72 : 120) + (isMobile ? 42 : 60);
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          particle.className = 'firework-particle';
+          particle.style.background = color;
+          particle.style.boxShadow = `0 0 15px ${color}, 0 0 25px ${color}`;
+          particle.style.left = '50%';
+          particle.style.top = '50%';
+          particle.style.setProperty('--travel-distance', `translate(${Math.cos(angle * Math.PI / 180) * distance}px, ${Math.sin(angle * Math.PI / 180) * distance}px)`);
+          firework.appendChild(particle);
+        }
+      }, 760);
+
+      setTimeout(() => firework.remove(), 2300);
+    }
+
+    function createRisingBalloon() {
+      if (prefersReducedMotion) return;
+      const colors = ['pink', 'purple', 'cyan', 'gold'];
+      const balloon = document.createElement('div');
+      balloon.className = `celebration-balloon ${colors[Math.floor(Math.random() * colors.length)]}`;
+      balloon.style.left = `${Math.random() * 80 + 10}%`;
+      balloon.style.setProperty('--drift', `${Math.random() * 160 - 80}px`);
+      balloon.innerHTML = `
+        <svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 50 C38.8071 50 50 38.8071 50 25 C50 11.1929 38.8071 0 25 0 C11.1929 0 0 11.1929 0 25 C0 38.8071 11.1929 50 25 50 Z" fill="currentColor" />
+        </svg>
+      `;
+      balloonLayer.appendChild(balloon);
+      setTimeout(() => {
+        balloon.style.animation = `floatUpBalloon ${Math.random() * 3 + 8}s linear forwards`;
+      }, 50);
+      setTimeout(() => balloon.remove(), 11200);
+    }
+
+    async function startCelebration() {
+      if (isAnimating) return;
+      playBirthdaySong();
+      isAnimating = true;
+      scene.classList.add('celebrating');
+      candle.classList.add('blown');
+      instruction.style.opacity = '0';
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      knife.style.opacity = '1';
+      knife.style.left = 'calc(50% - 155px)';
+
+      await new Promise((resolve) => setTimeout(resolve, 850));
+      knife.classList.add('cutting');
+      cakeCutMark.classList.add('visible');
+      scene.classList.add('cake-cut');
+      createCakeCrumbs(window.innerWidth / 2 + 18, window.innerHeight * 0.52);
+      createConfetti(window.innerWidth / 2, window.innerHeight * 0.45, isMobile ? 24 : 70);
+
+      await new Promise((resolve) => setTimeout(resolve, 850));
+      cakeSlice.classList.add('visible');
+      createCakeCrumbs(window.innerWidth / 2 + 72, window.innerHeight * 0.58);
+      createConfettiCurtain();
+
+      const fireworkBursts = isMobile ? [
+        { side: 'left', offset: 0 },
+        { side: 'right', offset: 0 },
+      ] : [
+        { side: 'left', offset: -18 },
+        { side: 'left', offset: 18 },
+        { side: 'right', offset: -18 },
+        { side: 'right', offset: 18 },
+        { side: 'left', offset: 0 },
+        { side: 'right', offset: 0 },
+      ];
+
+      fireworkBursts.forEach(({ side, offset }, index) => {
+        setTimeout(() => createFirework(side, offset), index * 110);
+      });
+
+      setTimeout(() => happyBirthdayText.classList.add('visible'), 650);
+
+      const balloonInterval = setInterval(createRisingBalloon, isMobile ? 850 : 360);
+      setTimeout(() => clearInterval(balloonInterval), isMobile ? 3600 : 6500);
+
+      setTimeout(() => {
+        const left = document.getElementById('bombLeft');
+        const right = document.getElementById('bombRight');
+        [left, right].forEach((bomb) => {
+          bomb.style.opacity = '1';
+          bomb.style.transform = 'scale(1)';
+        });
+
+        setTimeout(() => {
+          [left, right].forEach((bomb) => {
+            const rect = bomb.getBoundingClientRect();
+            createConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, isMobile ? 20 : 58);
+            bomb.style.transform = 'scale(3)';
+            bomb.style.opacity = '0';
+          });
+        }, 500);
+      }, 1500);
+
+      const confettiInterval = setInterval(() => createConfetti(Math.random() * window.innerWidth, -20, isMobile ? 10 : 28), isMobile ? 520 : 320);
+      setTimeout(() => {
+        clearInterval(confettiInterval);
+        wishPopup.classList.add('visible');
+        isAnimating = false;
+      }, isMobile ? 3600 : 5000);
+    }
+
+    candle.addEventListener('click', startCelebration);
+    flames.forEach((flame) => flame.addEventListener('click', startCelebration));
+    cutCakeButton.addEventListener('click', startCelebration);
+    wishDone.addEventListener('click', () => {
+      pauseBirthdaySong();
+      window.location.href = '/wish';
+    });
+  </script>
+</body>
+</html>
